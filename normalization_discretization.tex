@@ -1,0 +1,376 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\documentclass[
+]{article}
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx}
+\makeatletter
+\newsavebox\pandoc@box
+\newcommand*\pandocbounded[1]{% scales image to fit in text height/width
+  \sbox\pandoc@box{#1}%
+  \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
+  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
+  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi% select the smaller of both
+  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
+  \else\usebox{\pandoc@box}%
+  \fi%
+}
+% Set default figure placement to htbp
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={Data Normalization and Discretization in R},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{Data Normalization and Discretization in R}
+\author{}
+\date{\vspace{-2.5em}}
+
+\begin{document}
+\maketitle
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Use mpg from mtcars dataset}
+\NormalTok{data }\OtherTok{\textless{}{-}}\NormalTok{ mtcars}\SpecialCharTok{$}\NormalTok{mpg}
+\FunctionTok{summary}\NormalTok{(data)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##   10.40   15.43   19.20   20.09   22.80   33.90
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Original boxplot}
+\FunctionTok{boxplot}\NormalTok{(data, }\AttributeTok{main =} \StringTok{"Original Data (mpg)"}\NormalTok{, }\AttributeTok{col =} \StringTok{"lightblue"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\pandocbounded{\includegraphics[keepaspectratio]{normalization_discretization_files/figure-latex/unnamed-chunk-1-1.pdf}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{z\_score }\OtherTok{\textless{}{-}} \FunctionTok{scale}\NormalTok{(data)}
+
+\FunctionTok{boxplot}\NormalTok{(z\_score, }\AttributeTok{main =} \StringTok{"Z{-}Score Normalization"}\NormalTok{, }\AttributeTok{col =} \StringTok{"lightgreen"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\pandocbounded{\includegraphics[keepaspectratio]{normalization_discretization_files/figure-latex/unnamed-chunk-2-1.pdf}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(ggplot2)}
+\FunctionTok{library}\NormalTok{(tidyr)}
+\NormalTok{su }\OtherTok{=} \FunctionTok{read.delim}\NormalTok{(}\StringTok{"C:/Users/HOME//Downloads//SuTable.txt"}\NormalTok{, }\AttributeTok{header =}\NormalTok{ T, }\AttributeTok{sep=}\StringTok{"}\SpecialCharTok{\textbackslash{}t}\StringTok{"}\NormalTok{, }\AttributeTok{row.names =} \DecValTok{1}\NormalTok{)}
+\FunctionTok{head}\NormalTok{(su)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##           Brain_1.CEL Brain_2.CEL Fetal_brain_1.CEL Fetal_brain_2.CEL
+## 100_g_at       120.25      255.00              3.50             31.00
+## 1000_at        583.60      885.40            253.65            293.35
+## 1001_at         35.85       40.50             47.20             33.05
+## 1002_f_at       17.60       19.85             11.10             23.10
+## 1003_s_at        0.15       26.40             78.00             36.00
+## 1004_at         34.70       77.75            -12.00             16.90
+##           Fetal_liver_1.CEL Fetal_liver_2.CEL Liver_1.CEL Liver_2.CEL
+## 100_g_at               6.50             -8.25       19.15       73.00
+## 1000_at              201.20            433.75      134.25      251.15
+## 1001_at               86.35            119.25       37.10       72.10
+## 1002_f_at             38.75             94.60      452.10      662.50
+## 1003_s_at             89.50             34.00       22.75      100.00
+## 1004_at              121.75             24.25       30.00       54.35
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{su\_zscore }\OtherTok{=} \FunctionTok{as.data.frame}\NormalTok{(}\FunctionTok{scale}\NormalTok{(su))}
+
+
+\FunctionTok{head}\NormalTok{(su\_zscore)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##           Brain_1.CEL Brain_2.CEL Fetal_brain_1.CEL Fetal_brain_2.CEL
+## 100_g_at   0.01672157  0.01849025        -0.6071709        -0.4538804
+## 1000_at    2.10012364  1.08526134         0.7334272         0.6367323
+## 1001_at   -0.36277370 -0.34448945        -0.3729749        -0.4453584
+## 1002_f_at -0.44483281 -0.37943364        -0.5664412        -0.4867214
+## 1003_s_at -0.52329481 -0.36834965        -0.2079122        -0.4330949
+## 1004_at   -0.36794455 -0.28145451        -0.6902382        -0.5124954
+##           Fetal_liver_1.CEL Fetal_liver_2.CEL Liver_1.CEL Liver_2.CEL
+## 100_g_at        -0.47951308        -0.4427143  -0.3629377  -0.2854352
+## 1000_at          0.22119223         0.2504971   0.1729258   0.2191821
+## 1001_at         -0.19214113        -0.2427494  -0.2793691  -0.2879845
+## 1002_f_at       -0.36344864        -0.2814093   1.6527191   1.3843479
+## 1003_s_at       -0.18080460        -0.3764514  -0.3461774  -0.2089566
+## 1004_at         -0.06474016        -0.3917428  -0.3124241  -0.3382621
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Reshape to long format}
+\NormalTok{df\_long }\OtherTok{\textless{}{-}} \FunctionTok{pivot\_longer}\NormalTok{(su, }\AttributeTok{cols =} \FunctionTok{everything}\NormalTok{(),}
+                        \AttributeTok{names\_to =} \StringTok{"Variable"}\NormalTok{, }\AttributeTok{values\_to =} \StringTok{"Value"}\NormalTok{)}
+
+\CommentTok{\# Plot}
+\FunctionTok{ggplot}\NormalTok{(df\_long, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ Variable, }\AttributeTok{y =}\NormalTok{ Value, }\AttributeTok{fill =}\NormalTok{ Variable)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_boxplot}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{ggtitle}\NormalTok{(}\StringTok{"Boxplots of Multiple Variables"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\pandocbounded{\includegraphics[keepaspectratio]{normalization_discretization_files/figure-latex/unnamed-chunk-3-1.pdf}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{boxplot}\NormalTok{(su)}
+\end{Highlighting}
+\end{Shaded}
+
+\pandocbounded{\includegraphics[keepaspectratio]{normalization_discretization_files/figure-latex/unnamed-chunk-3-2.pdf}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DocumentationTok{\#\#\#\#\#\#\#\#\#\#\#\# after normalization}
+\NormalTok{df\_zscore }\OtherTok{\textless{}{-}} \FunctionTok{pivot\_longer}\NormalTok{(su\_zscore, }\AttributeTok{cols =} \FunctionTok{everything}\NormalTok{(),}
+                        \AttributeTok{names\_to =} \StringTok{"Variable"}\NormalTok{, }\AttributeTok{values\_to =} \StringTok{"Value"}\NormalTok{)}
+
+\FunctionTok{ggplot}\NormalTok{(df\_zscore, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ Variable, }\AttributeTok{y =}\NormalTok{ Value, }\AttributeTok{fill =}\NormalTok{ Variable)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_boxplot}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{ggtitle}\NormalTok{(}\StringTok{"Boxplots of Multiple Variables"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\pandocbounded{\includegraphics[keepaspectratio]{normalization_discretization_files/figure-latex/unnamed-chunk-3-3.pdf}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{boxplot}\NormalTok{(su\_zscore)}
+\end{Highlighting}
+\end{Shaded}
+
+\pandocbounded{\includegraphics[keepaspectratio]{normalization_discretization_files/figure-latex/unnamed-chunk-3-4.pdf}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(ggplot2)}
+\CommentTok{\#this is NGS data and it require more specialized normalization. However, I\textquotesingle{}m showing this for illustration purposes.}
+
+\FunctionTok{ggplot}\NormalTok{(su, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ Brain\_1.CEL)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_density}\NormalTok{(}\AttributeTok{fill =} \StringTok{"skyblue"}\NormalTok{, }\AttributeTok{alpha =} \FloatTok{0.5}\NormalTok{, }\AttributeTok{color =} \StringTok{"blue"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}
+    \AttributeTok{title =} \StringTok{"Density Curve of my\_column"}\NormalTok{,}
+    \AttributeTok{x =} \StringTok{"Values"}\NormalTok{,}
+    \AttributeTok{y =} \StringTok{"Density"}
+\NormalTok{  ) }\SpecialCharTok{+}
+  \FunctionTok{theme\_minimal}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\pandocbounded{\includegraphics[keepaspectratio]{normalization_discretization_files/figure-latex/unnamed-chunk-4-1.pdf}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(su, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =} \FunctionTok{log}\NormalTok{(Brain\_1.CEL))) }\SpecialCharTok{+}
+  \FunctionTok{geom\_density}\NormalTok{(}\AttributeTok{fill =} \StringTok{"skyblue"}\NormalTok{, }\AttributeTok{alpha =} \FloatTok{0.5}\NormalTok{, }\AttributeTok{color =} \StringTok{"blue"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}
+    \AttributeTok{title =} \StringTok{"Density Curve of my\_column"}\NormalTok{,}
+    \AttributeTok{x =} \StringTok{"Values"}\NormalTok{,}
+    \AttributeTok{y =} \StringTok{"Density"}
+\NormalTok{  ) }\SpecialCharTok{+}
+  \FunctionTok{theme\_minimal}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning in log(Brain_1.CEL): NaNs produced
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: Removed 9 rows containing non-finite outside the scale range
+## (`stat_density()`).
+\end{verbatim}
+
+\pandocbounded{\includegraphics[keepaspectratio]{normalization_discretization_files/figure-latex/unnamed-chunk-4-2.pdf}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{min\_max }\OtherTok{\textless{}{-}}\NormalTok{ (data }\SpecialCharTok{{-}} \FunctionTok{min}\NormalTok{(data)) }\SpecialCharTok{/}\NormalTok{ (}\FunctionTok{max}\NormalTok{(data) }\SpecialCharTok{{-}} \FunctionTok{min}\NormalTok{(data))}
+
+\FunctionTok{boxplot}\NormalTok{(min\_max, }\AttributeTok{main =} \StringTok{"Min{-}Max Normalization [0,1]"}\NormalTok{, }\AttributeTok{col =} \StringTok{"lightpink"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\pandocbounded{\includegraphics[keepaspectratio]{normalization_discretization_files/figure-latex/unnamed-chunk-5-1.pdf}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Equal{-}width binning into 3 groups}
+\NormalTok{equal\_width }\OtherTok{\textless{}{-}} \FunctionTok{cut}\NormalTok{(data, }\AttributeTok{breaks =} \DecValTok{3}\NormalTok{, }\AttributeTok{labels =} \FunctionTok{c}\NormalTok{(}\StringTok{"Low"}\NormalTok{, }\StringTok{"Medium"}\NormalTok{, }\StringTok{"High"}\NormalTok{))}
+
+\CommentTok{\# Equal{-}frequency binning into 3 groups}
+\NormalTok{equal\_freq }\OtherTok{\textless{}{-}} \FunctionTok{cut}\NormalTok{(data, }
+                  \AttributeTok{breaks =} \FunctionTok{quantile}\NormalTok{(data, }\AttributeTok{probs =} \FunctionTok{seq}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{, }\AttributeTok{length.out =} \DecValTok{4}\NormalTok{)), }
+                  \AttributeTok{include.lowest =} \ConstantTok{TRUE}\NormalTok{, }
+                  \AttributeTok{labels =} \FunctionTok{c}\NormalTok{(}\StringTok{"Low"}\NormalTok{, }\StringTok{"Medium"}\NormalTok{, }\StringTok{"High"}\NormalTok{))}
+
+\CommentTok{\# Show counts per bin}
+\FunctionTok{table}\NormalTok{(equal\_width)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## equal_width
+##    Low Medium   High 
+##     14     13      5
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{table}\NormalTok{(equal\_freq)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## equal_freq
+##    Low Medium   High 
+##     11     11     10
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{mpg =}\NormalTok{ data, }\AttributeTok{EqualWidth =}\NormalTok{ equal\_width, }\AttributeTok{EqualFreq =}\NormalTok{ equal\_freq)}
+
+\CommentTok{\# Equal{-}width boxplot}
+\FunctionTok{ggplot}\NormalTok{(df, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ EqualWidth, }\AttributeTok{y =}\NormalTok{ mpg, }\AttributeTok{fill =}\NormalTok{ EqualWidth)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_boxplot}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{ggtitle}\NormalTok{(}\StringTok{"Discretization: Equal{-}Width Binning"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\pandocbounded{\includegraphics[keepaspectratio]{normalization_discretization_files/figure-latex/unnamed-chunk-7-1.pdf}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Equal{-}frequency boxplot}
+\FunctionTok{ggplot}\NormalTok{(df, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ EqualFreq, }\AttributeTok{y =}\NormalTok{ mpg, }\AttributeTok{fill =}\NormalTok{ EqualFreq)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_boxplot}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{ggtitle}\NormalTok{(}\StringTok{"Discretization: Equal{-}Frequency Binning"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\pandocbounded{\includegraphics[keepaspectratio]{normalization_discretization_files/figure-latex/unnamed-chunk-7-2.pdf}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Load required package}
+\FunctionTok{library}\NormalTok{(ggplot2)}
+
+\CommentTok{\# Generate data}
+\NormalTok{x }\OtherTok{\textless{}{-}} \FunctionTok{seq}\NormalTok{(}\SpecialCharTok{{-}}\DecValTok{4}\NormalTok{, }\DecValTok{4}\NormalTok{, }\AttributeTok{length=}\DecValTok{1000}\NormalTok{)}
+\NormalTok{y }\OtherTok{\textless{}{-}} \FunctionTok{dnorm}\NormalTok{(x, }\AttributeTok{mean=}\DecValTok{0}\NormalTok{, }\AttributeTok{sd=}\DecValTok{1}\NormalTok{)}
+\NormalTok{df }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(x, y)}
+
+\CommentTok{\# Plot with ggplot2}
+\FunctionTok{ggplot}\NormalTok{(df, }\FunctionTok{aes}\NormalTok{(x, y)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_line}\NormalTok{(}\AttributeTok{linewidth=}\DecValTok{1}\NormalTok{, }\AttributeTok{color=}\StringTok{"blue"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}
+    \AttributeTok{title =} \StringTok{"Standard Normal Distribution (Z \textasciitilde{} N(0,1))"}\NormalTok{,}
+    \AttributeTok{x =} \StringTok{"z"}\NormalTok{,}
+    \AttributeTok{y =} \StringTok{"Probability Density"}
+\NormalTok{  ) }\SpecialCharTok{+}
+  \FunctionTok{theme\_minimal}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\pandocbounded{\includegraphics[keepaspectratio]{normalization_discretization_files/figure-latex/unnamed-chunk-8-1.pdf}}
+
+\end{document}
